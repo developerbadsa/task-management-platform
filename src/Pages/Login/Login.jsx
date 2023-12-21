@@ -1,16 +1,67 @@
 
 import { Link } from 'react-router-dom';
 import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
-      const {data} = useUserInfo()
+      const {userLogin, loginWithFB,loginWithGoogle} = useUserInfo()
+
       const handleLoginSubmit = (e)=>{
             e.preventDefault()
             const email = e?.target.email.value
             const password = e?.target.password.value
 
-            console.log('submited',  email,  password)
+            userLogin(email, password)
+            .then(res=>{
+                  Swal.fire({
+                        title: "Login Success",
+                        text: "Successfully login",
+                        icon: "success"
+                      });
+            })
+            .catch(err=>{
+                  Swal.fire({
+                        title: "Login Problem",
+                        text: "Problem login",
+                        icon: "warning"
+                      });
+            })
+      }
+
+      const handleGoogleLogin = ()=>{
+            loginWithGoogle()
+            .then(res=>{
+                  Swal.fire({
+                        title: "Login Success",
+                        text: "Successfully login With Google",
+                        icon: "success"
+                      });
+            })
+            .catch(err=>{
+                  Swal.fire({
+                        title: "Login Success",
+                        text: "Problem login With Google",
+                        icon: "warning"
+                      });
+            })
+      }
+      const handleFBLogin = ()=>{
+            loginWithFB()
+            .then(res=>{
+                  Swal.fire({
+                        title: "Login Success",
+                        text: "Successfully login With Facebook",
+                        icon: "success"
+                      });
+            })
+            .catch(err=>{
+                  Swal.fire({
+                        title: "Login Success",
+                        text: "Problem login With Google",
+                        icon: "warning"
+                      });
+            })
       }
 
 
@@ -69,9 +120,20 @@ const Login = () => {
                                                 >
                                                       LOGIN
                                                 </button>
-                                                <a
-                                                      href="#"
-                                                      className="flex items-center justify-center py-4 mb-4 border border-teal-400 dark:border-gray-600 hover:bg-teal-200 dark:hover:bg-gray-800"
+                                                
+                                                <p className="mt-4 text-sm text-gray-700 dark:text-gray-400">
+                                                      {" "}
+                                                      Need an account?{" "}
+                                                      <Link to={'/register'}
+                                                            href="#"
+                                                            className="font-bold text-base text-teal-500 hover:text-teal-700 dark:text-teal-300 dark:hover:text-teal-400"
+                                                      >
+                                                            Create an account
+                                                      </Link>
+                                                </p>
+                                          </form>
+                                          {/* <button onClick={handleFBLogin}
+                                                      className="flex items-center w-full justify-center py-4 mb-4 border border-teal-400 dark:border-gray-600 hover:bg-teal-200 dark:hover:bg-gray-800"
                                                 >
                                                       <span className="inline-block mr-4 text-teal-800 dark:text-gray-400">
                                                             <svg
@@ -88,10 +150,9 @@ const Login = () => {
                                                       <span className="text-xs font-bold text-teal-800 lg:text-sm dark:text-gray-400">
                                                             Login with Facebook
                                                       </span>
-                                                </a>
-                                                <a
-                                                      href="#"
-                                                      className="flex items-center justify-center py-4 border border-teal-400 dark:border-gray-600 hover:bg-teal-200 dark:hover:bg-gray-800"
+                                                </button> */}
+                                                <button onClick={handleGoogleLogin}
+                                                      className="flex w-full items-center justify-center py-4 border border-teal-400 dark:border-gray-600 hover:bg-teal-200 dark:hover:bg-gray-800"
                                                 >
                                                       <span className="inline-block mr-4 text-teal-800 dark:text-gray-400">
                                                             <svg
@@ -108,18 +169,7 @@ const Login = () => {
                                                       <span className="text-xs font-bold text-teal-800 lg:text-sm dark:text-gray-400 ">
                                                             Login with Google
                                                       </span>
-                                                </a>
-                                                <p className="mt-4 text-sm text-gray-700 dark:text-gray-400">
-                                                      {" "}
-                                                      Need an account?{" "}
-                                                      <Link to={'/register'}
-                                                            href="#"
-                                                            className="font-bold text-base text-teal-500 hover:text-teal-700 dark:text-teal-300 dark:hover:text-teal-400"
-                                                      >
-                                                            Create an account
-                                                      </Link>
-                                                </p>
-                                          </form>
+                                                </button>
                                     </div>
                               </div>
                               <div className="hidden w-full px-10 mb-16 lg:w-1/2 lg:mb-0 lg:block">

@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import app from './Firebase.config';
-import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 
 
 export const userInfoProvider = createContext(null)
@@ -23,16 +23,22 @@ const userRegister = (email, password)=>{
       setLoading(true)
       return createUserWithEmailAndPassword(auth, email, password)
 
-      // updateProfile(auth.currentUser, {
-      //       displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-      //     }).then(() => {
-      //       // Profile updated!
-      //       // ...
-      //     }).catch((error) => {
-      //       // An error occurred
-      //       // ...
-      //     });
 }
+
+const updateUser = (displayName, PhotoURL)=>{
+            return updateProfile(auth.currentUser, {
+            displayName:displayName, photoURL: PhotoURL
+          })
+}
+
+useEffect(() => {
+
+      const unSubscribe = onAuthStateChanged(auth, currentUser => {
+          setUser(currentUser)
+          setLoading(false)
+      });
+      return unSubscribe
+  }, [])
 
 //Login with facebook
 const loginWithFB = ()=>{
@@ -54,10 +60,10 @@ const userLogout = ()=>{
       return 'reg'
 }
 
-
+console.log(user)
 
       const userData = {
-            user, userRegister, userLogin, userLogout,loginWithFB,loginWithGoogle, loading
+            user, userRegister,updateUser, userLogin, userLogout,loginWithFB,loginWithGoogle, loading
       }
       return (
             <userInfoProvider.Provider value={userData}>
