@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import app from './Firebase.config';
-import { FacebookAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 
 export const userInfoProvider = createContext(null)
@@ -14,8 +14,9 @@ const [loading, setLoading] = useState(true)
 const auth =  getAuth(app)
 
 
-const userLogin = ()=>{
-      return 'login'
+const userLogin = (email, password)=>{
+      setLoading(true)
+      return signInWithEmailAndPassword(auth, email, password)
 }
 const userRegister = (email, password)=>{
       
@@ -31,23 +32,32 @@ const userRegister = (email, password)=>{
       //       // An error occurred
       //       // ...
       //     });
-
-
-
-    
 }
+
+//Login with facebook
 const loginWithFB = ()=>{
-      const FBprovider = new FacebookAuthProvider();
-      signInWithPopup(auth, FBprovider)
+      setLoading(true)
+      const FBProvider = new FacebookAuthProvider();
+      return signInWithPopup(auth, FBProvider)
 }
+
+//Login with Google 
+const loginWithGoogle = ()=>{
+      setLoading(true)
+      const GoogleProvider = new GoogleAuthProvider();
+      return signInWithPopup(auth, GoogleProvider)
+}
+
+
 const userLogout = ()=>{
+      setLoading(true)
       return 'reg'
 }
 
 
 
       const userData = {
-            user, userRegister, userLogin, userLogout,loginWithFB, loading
+            user, userRegister, userLogin, userLogout,loginWithFB,loginWithGoogle, loading
       }
       return (
             <userInfoProvider.Provider value={userData}>
