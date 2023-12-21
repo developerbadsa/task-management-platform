@@ -1,14 +1,27 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
+import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
 
 const Login = () => {
+
+      const {data} = useUserInfo()
+      const handleLoginSubmit = (e)=>{
+            e.preventDefault()
+            const email = e?.target.email.value
+            const password = e?.target.password.value
+
+            console.log('submited',  email,  password)
+      }
+
+
+
       return (
             <section className="relative py-4 lg:py-11 font-poppins h-screen flex">
                   <div className="max-w-6xl px-1 mx-auto lg:px-6 flex ">
                         <div className="flex flex-wrap items-center ">
                               <div className="w-full lg:w-2/5">
                                     <div className="bg-white shadow-lg dark:bg-gray-900 p-11 ">
-                                          <form action="" className="">
+                                          <form onSubmit={handleLoginSubmit}>
                                                 <div className="text-center mb-7">
                                                       <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-300">
                                                       Login
@@ -16,6 +29,7 @@ const Login = () => {
                                                 </div>
                                                 <div className="relative flex flex-wrap mb-5">
                                                       <input
+                                                            name='email'
                                                             type="email"
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 md:mb-0"
                                                             placeholder="Email..."
@@ -27,7 +41,8 @@ const Login = () => {
                                                 </div>
                                                 <div className="relative flex flex-wrap items-center mb-5">
                                                       <input
-                                                            type="email"
+                                                            name='password'
+                                                            type="password"
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-800 md:mb-0 dark:bg-gray-700"
                                                             placeholder="Password..."
                                                             required=""

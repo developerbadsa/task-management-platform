@@ -1,32 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
 
 const Register = () => {
+
+      const { userRegister } = useUserInfo()
+      console.log(userRegister)
+
+      const handleRegisterSubmit = (e) => {
+            e.preventDefault()
+            const name = e?.target.name.value
+            const email = e?.target.email.value
+            const photo = e?.target.photo.value
+            const password = e?.target.password.value
+
+            console.log('submited', name, email, photo, password)
+
+            userRegister(email, password )
+                  .then(res => {
+                        console.log('created user', res)
+                  })
+                  .catch(err => console.log(err))
+      }
+
+
+
+
       return (
             <section className="relative py-4 lg:py-11 h-screen flex">
                   <div className="max-w-6xl px-1 mx-auto lg:px-6 flex ">
                         <div className="flex flex-wrap items-center flex-row-reverse">
                               <div className="w-full lg:w-3/5">
                                     <div className="bg-white dark:bg-gray-900 p-11 ">
-                                          <form action="" className="">
+                                          <form onSubmit={handleRegisterSubmit}>
                                                 <div className="text-center mb-7">
                                                       <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-300">
-                                                      Register
+                                                            Register
                                                       </h2>
                                                 </div>
                                                 <div className="relative flex flex-wrap mb-5">
                                                       <input
-                                                            type="email"
+                                                            name='name'
+                                                            type="text"
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 md:mb-0"
                                                             placeholder="Name..."
                                                             required=""
                                                       />
                                                       <span className="absolute top-0 left-0 inline-block px-1 ml-4 -mt-2 text-xs text-gray-500 bg-white dark:text-gray-300 dark:bg-gray-800">
-                                                           Full Name
+                                                            Full Name
                                                       </span>
                                                 </div>
                                                 <div className="relative flex flex-wrap mb-5">
                                                       <input
+                                                            name='email'
                                                             type="email"
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 md:mb-0"
                                                             placeholder="Email..."
@@ -38,7 +64,8 @@ const Register = () => {
                                                 </div>
                                                 <div className="relative flex flex-wrap mb-5">
                                                       <input
-                                                            type="email"
+                                                            type="text"
+                                                            name='photo'
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 md:mb-0"
                                                             placeholder="PhotoURL..."
                                                             required=""
@@ -49,7 +76,8 @@ const Register = () => {
                                                 </div>
                                                 <div className="relative flex flex-wrap items-center mb-5">
                                                       <input
-                                                            type="email"
+                                                            name='password'
+                                                            type="text"
                                                             className="relative w-full py-4 pl-4 mb-2 text-sm border rounded dark:text-gray-300 dark:border-gray-800 md:mb-0 dark:bg-gray-700"
                                                             placeholder="Password..."
                                                             required=""
@@ -118,7 +146,7 @@ const Register = () => {
                                                 </a>
                                                 <p className="mt-4 text-sm text-gray-700 dark:text-gray-400">
                                                       {" "}
-                                                     Already have account?{" "}
+                                                      Already have account?{" "}
                                                       <Link to='/login'
                                                             href="#"
                                                             className="font-bold text-base text-teal-500 hover:text-teal-700 dark:text-teal-300 dark:hover:text-teal-400"
@@ -135,10 +163,10 @@ const Register = () => {
                                                 Welcome
                                           </span>
                                           <h2 className="mt-3 mb-6 text-2xl font-bold text-gray-800 dark:text-gray-400">
-                                          Register to Our Task Management  Platform
+                                                Register to Our Task Management  Platform
                                           </h2>
                                           <p className="text-lg text-gray-500 dark:text-teal-400">
-                                          Welcome! Register to access your tasks and collaborate with your team.
+                                                Welcome! Register to access your tasks and collaborate with your team.
                                           </p>
                                     </div>
                               </div>
