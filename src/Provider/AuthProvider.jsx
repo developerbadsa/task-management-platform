@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from './Firebase.config';
-import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 
 export const userInfoProvider = createContext(null)
@@ -57,7 +57,7 @@ const loginWithGoogle = ()=>{
 
 const userLogout = ()=>{
       setLoading(true)
-      return 'reg'
+      return signOut(auth)
 }
 
 console.log(user)

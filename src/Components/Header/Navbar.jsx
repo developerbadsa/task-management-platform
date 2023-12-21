@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+const {user, userLogout} = useUserInfo()
+
+
       const menuItems = <>
             <li>
                   <NavLink
@@ -13,7 +18,7 @@ const Navbar = () => {
                         Home
                   </NavLink>
             </li>
-            <li>
+            {user && <li>
                   <NavLink
                         to="/dashboard"
                         className={({ isActive, isPending }) =>
@@ -22,9 +27,14 @@ const Navbar = () => {
                   >
                         Dashboard
                   </NavLink>
-            </li>
+            </li>}
+
+
+           {  !user && <>
+           
+           
             <li>
-                  <NavLink
+               <NavLink
                         to="/login"
                         className={({ isActive, isPending }) =>
                               isPending ? "pending" : isActive ? "text-green-600" : ""
@@ -43,10 +53,20 @@ const Navbar = () => {
                         Register
                   </NavLink>
             </li>
+           
+           </> }
 
       </>
 
-
+const handleLogout = ()=>{
+      userLogout()
+      .then(res=>{
+            Swal.fire({
+                  icon: "error",
+                  title: "Logged Out...",
+                });
+      })
+}
       return (
             <div className="navbar bg-base-100">
                   <div className="navbar-start">
@@ -66,7 +86,7 @@ const Navbar = () => {
                         </ul>
                   </div>
                   <div className="navbar-end">
-                        <a className="btn btn-sm md:btn-md">Login</a>
+                       {user? <button onClick={handleLogout}>Logout</button> : <a className="btn btn-sm md:btn-md">Login</a>}
                   </div>
             </div>
       );
