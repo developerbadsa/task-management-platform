@@ -6,7 +6,7 @@ import { RxHome } from 'react-icons/rx';
 
 const Dashboard = () => {
       return (
-            <div>
+            <div className='h-[70vh] my-10'>
                   <div className="lg:flex">
                         {/* Sidebar */}
                         <nav className="lg:w-82 lg:flex-shrink-0 border-r lg:left-0 lg:bottom-0 lg:flex lg:flex-col lg:dark:bg-gray-900 lg:text-green-gray-900 lg:z-50 ">
