@@ -1,17 +1,23 @@
-import React from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CreateTask = () => {
       const { register, handleSubmit } = useForm()
 
       const handleTaskSubmit = (data) => {
-            console.log('click', data)
+
+            axios.post('http://localhost:3000/create-task',data)
+            .then(res=>{
+                  toast.success("This is a success message!")
+            })
       }
-      console.log(register)
       return (
             <div>
                   <form className='grid px-6 py-10 gap-6' onSubmit={handleSubmit(handleTaskSubmit)}>
-
+                  <ToastContainer />
                         <label className='flex gap-5 items-center justify-between'>
                              <span className='font-bold'> Title</span>: <input className="input input-sm input-bordered lg:w-[800px] " placeholder='Type Title Of Your Task' type="text" {...register('title')} />
                         </label>
