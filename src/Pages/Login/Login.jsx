@@ -1,11 +1,12 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
 import Swal from 'sweetalert2';
 
 const Login = () => {
 
       const {userLogin, loginWithFB,loginWithGoogle} = useUserInfo()
+      const navigate = useNavigate()
 
       const handleLoginSubmit = (e)=>{
             e.preventDefault()
@@ -15,10 +16,12 @@ const Login = () => {
             userLogin(email, password)
             .then(res=>{
                   Swal.fire({
-                        title: "Login Success",
-                        text: "Successfully login",
-                        icon: "success"
+                        icon: "success",
+                        title: "Login Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
                       });
+                      navigate('/dashboard')
             })
             .catch(err=>{
                   Swal.fire({
@@ -33,10 +36,12 @@ const Login = () => {
             loginWithGoogle()
             .then(res=>{
                   Swal.fire({
-                        title: "Login Success",
-                        text: "Successfully login With Google",
-                        icon: "success"
+                        icon: "success",
+                        title: "Login Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
                       });
+                      navigate('/dashboard')
             })
             .catch(err=>{
                   Swal.fire({
@@ -50,10 +55,12 @@ const Login = () => {
             loginWithFB()
             .then(res=>{
                   Swal.fire({
-                        title: "Login Success",
-                        text: "Successfully login With Facebook",
-                        icon: "success"
+                        icon: "success",
+                        title: "Login Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
                       });
+                      navigate('/dashboard')
             })
             .catch(err=>{
                   Swal.fire({
