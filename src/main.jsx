@@ -10,6 +10,9 @@ import Register from './Pages/Register/Register'
 import AuthProvider from './Provider/AuthProvider'
 import LoggedIn from './PrivateRoutes/LoggedIn'
 import LoggedOut from './PrivateRoutes/LoggedOut'
+import Profile from './Pages/Dashboard/Profile.'
+import CreateTask from './Pages/Dashboard/CreateTask'
+import ToDoList from './Pages/Dashboard/ToDoList'
 
 const Router = createBrowserRouter([
   {
@@ -21,8 +24,22 @@ const Router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: '/dashboard',
-        element: <LoggedIn><Dashboard></Dashboard></LoggedIn>
+        path: '/dashboard/',
+        element: <LoggedIn><Dashboard></Dashboard></LoggedIn>,
+        children: [
+          {
+            path: '/dashboard/create-task',
+            element: <CreateTask></CreateTask>
+          },
+          {
+            path: '/dashboard/profile',
+            element: <Profile></Profile>
+          },
+          {
+            path: '/dashboard/todo-list',
+            element: <ToDoList></ToDoList>
+          }
+        ]
       },
       {
         path: '/login',

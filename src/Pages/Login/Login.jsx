@@ -41,7 +41,7 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 1500
                       });
-                      navigate('/dashboard')
+                      navigate('/dashboard/create-task')
             })
             .catch(err=>{
                   Swal.fire({

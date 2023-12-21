@@ -20,7 +20,7 @@ const {user, userLogout} = useUserInfo()
             </li>
             {user && <li>
                   <NavLink
-                        to="/dashboard"
+                        to="/dashboard/todo-list"
                         className={({ isActive, isPending }) =>
                               isPending ? "pending" : isActive ? "text-green-600" : ""
                         }
