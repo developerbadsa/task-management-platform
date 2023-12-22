@@ -1,8 +1,15 @@
-# React + Vite
+# Task Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Task Management Platform! This platform allows users to efficiently manage their tasks, providing a simple and intuitive interface.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Check out the live demo [here](https://dazzling-biscochitos-d29f3b.netlify.app/).
+
+## Features
+
+- **Task Creation:** Easily create new tasks with relevant details.
+- **Task List:** View and manage your tasks in a clear and organized list.
+- **Task Details:** Access detailed information about each task by clicking on it.
+- **Task Status:** Mark tasks as completed or in-progress.
+- **Responsive Design:** The platform is designed to work seamlessly across various devices.
