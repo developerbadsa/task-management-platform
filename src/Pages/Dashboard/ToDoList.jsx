@@ -47,24 +47,28 @@ const ToDoList = () => {
       return 'loading';
     }
 
+    const refetchAll = ()=>{
+
+      
+      TodoTaskRefetch ()
+      OngoingTaskRefetch()
+      CompletedTaskRefetch()
+    }
+
 
 
 const onDragEnd = (result) => {
       if (!result?.destination) return;
 
       const { source, destination, draggableId } = result;
-      console.log(destination?.droppableId, draggableId, )
       axios.put(`http://localhost:3000/task-status?shouldgo=${destination?.droppableId}&email=${user?.email}&id=${draggableId}`)
       .then(res=>{
             if(res?.data.modifiedCount){
                   toast.success(`Moved to ${destination?.droppableId} Successfully`)
-                  TodoTaskRefetch ()
-                  OngoingTaskRefetch()
-                  CompletedTaskRefetch()
-
+                 
+                  refetchAll()
 
             }
-            console.log(res.data)
       })
 
       // Create a copy of the tasks object
@@ -82,12 +86,11 @@ const onDragEnd = (result) => {
       setTasks(updatedTasks);
 };
 
-console.log(OngoingTask, CompletedTask, TodoTask)
 
     return (
       <div className="p-8">
              <ToastContainer />
-        <Board todo={TodoTask} ongoing={OngoingTask} completed={CompletedTask} onDragEnd={onDragEnd} />
+        <Board todo={TodoTask} ongoing={OngoingTask} completed={CompletedTask} onDragEnd={onDragEnd} refetchAll={refetchAll}/>
       </div>
     );
   
