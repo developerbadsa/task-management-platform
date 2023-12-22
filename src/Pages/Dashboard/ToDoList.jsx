@@ -67,9 +67,6 @@ const onDragEnd = (result) => {
             console.log(res.data)
       })
 
-      console.log('Source:', source);
-      console.log('Destination:', destination);
-
       // Create a copy of the tasks object
       const updatedTasks = { ...tasks };
 
