@@ -2,16 +2,24 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
 
 
 const CreateTask = () => {
-      const { register, handleSubmit } = useForm()
+      const {user} = useUserInfo()
+      const { register, handleSubmit, reset } = useForm()
 
       const handleTaskSubmit = (data) => {
+            const TaskData = {
+                  formData: data,
+                  email: user?.email
 
-            axios.post('http://localhost:3000/create-task',data)
+            }
+
+            axios.post('http://localhost:3000/create-task',TaskData)
             .then(res=>{
-                  toast.success("This is a success message!")
+                  toast.success("Created Task")
+                  reset()
             })
       }
       return (

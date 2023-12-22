@@ -16,6 +16,7 @@ const Dashboard = () => {
 
 
                         <nav className="lg:w-80 lg:flex-shrink-0 border-r lg:left-0 lg:bottom-0 lg:flex lg:flex-col lg:dark:bg-gray-900 lg:text-green-gray-900 lg:z-50 ">
+                             {/* profile section */}
                               <div>
                                     <div className="overflow-hidden ">
                                           <img
@@ -49,6 +50,16 @@ const Dashboard = () => {
                                                       }
                                                 >
                                                       <div className="flex items-center gap-2">Create New Task</div>
+                                                </NavLink>
+                                          </li>
+                                          <li className="flex items-center group  dark:hover:bg-gray-800">
+                                                <NavLink
+                                                      to='/dashboard/todo-list'
+                                                      className={({ isActive, isPending }) =>
+                                                            isPending ? "text-red-400" : isActive ? "text-green-400 w-full bg-gray-800 px-6 py-4" : " px-6 py-4 "
+                                                      }
+                                                >
+                                                      <div className="flex items-center gap-2">Todo List</div>
                                                 </NavLink>
                                           </li>
                                           <li className="flex items-center group  dark:hover:bg-gray-800">

@@ -13,7 +13,6 @@ import LoggedOut from './PrivateRoutes/LoggedOut'
 import Profile from './Pages/Dashboard/Profile.'
 import CreateTask from './Pages/Dashboard/CreateTask'
 import ToDoList from './Pages/Dashboard/ToDoList'
-
 const Router = createBrowserRouter([
   {
     path: '/',
@@ -29,15 +28,15 @@ const Router = createBrowserRouter([
         children: [
           {
             path: '/dashboard/create-task',
-            element: <CreateTask></CreateTask>
+            element: <LoggedIn><CreateTask></CreateTask></LoggedIn>
           },
           {
             path: '/dashboard/profile',
-            element: <Profile></Profile>
+            element: <LoggedIn><Profile></Profile></LoggedIn>
           },
           {
             path: '/dashboard/todo-list',
-            element: <ToDoList></ToDoList>
+            element: <LoggedIn><ToDoList></ToDoList></LoggedIn>
           }
         ]
       },
@@ -56,9 +55,10 @@ const Router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+
     <AuthProvider>
       <RouterProvider router={Router}></RouterProvider>
     </AuthProvider>
-  </React.StrictMode>,
+  // {/* </React.StrictMode>, */}
 )
