@@ -4,6 +4,9 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import TaskList from './TaskList';
 
 const Board = ({ todo, ongoing, completed, onDragEnd }) => {
+
+console.log(todo);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex">

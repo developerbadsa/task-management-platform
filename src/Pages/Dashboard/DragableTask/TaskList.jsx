@@ -5,7 +5,6 @@ import Task from './Task';
 
 const TaskList = ({ title, tasks, droppableId }) => {
   
-  console.log(tasks)
 
   return (
     <div className="w-1/3 p-4">
