@@ -4,7 +4,10 @@ import { Droppable } from 'react-beautiful-dnd';
 import Task from './Task';
 
 const TaskList = ({ title, tasks, droppableId }) => {
-  
+  console.log(tasks)
+  // if(tasks?.length == 0){
+  //   return 'loading'
+  // }
 
   return (
     <div className="w-1/3 p-4">
@@ -12,10 +15,10 @@ const TaskList = ({ title, tasks, droppableId }) => {
       <Droppable droppableId={droppableId}>
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps} className="border border-gray-300 rounded">
-            {tasks.map((task, index) => (
-              <Task key={task._id} task={task} index={index} />
+            {tasks?.map((task, index) => (
+              <Task key={task?._id} task={task} index={index} />
             ))}
-            {provided.placeholder}
+            {provided?.placeholder}
           </div>
         )}
       </Droppable>
