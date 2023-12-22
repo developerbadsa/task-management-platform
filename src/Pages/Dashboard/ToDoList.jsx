@@ -1,44 +1,103 @@
 // ToDoList.js
 import React from 'react';
 import Board from './DragableTask/Board';
+import { useQuery } from '@tanstack/react-query';
+import useUserInfo from '../../Hooks/useUserInfo/useUserInfo';
 
 const ToDoList = () => {
-  const [tasks, setTasks] = React.useState({
-    todo: [{ id: '1', title: 'Task 1' }, { id: '2', title: 'Task 2' }],
-    ongoing: [{ id: '3', title: 'Task 3' }],
-    completed: [],
-  });
-console.log(tasks)
-  const onDragEnd = (result) => {
-      if (!result.destination) return;
-    
-      const { source, destination } = result;
-    
-      console.log('Source:', source);
-      console.log('Destination:', destination);
-    
-      // Create a copy of the tasks object
-      const updatedTasks = { ...tasks };
-    
-      // Remove the dragged task from the source list
-      const [removedTask] = updatedTasks[source.droppableId].splice(source.index, 1);
-    
-      // Add the dragged task to the destination list
-      updatedTasks[destination.droppableId].splice(destination.index, 0, removedTask);
-    
-      console.log('Updated Tasks:', updatedTasks);
-    
-      // Update the state with the new tasks
-      setTasks(updatedTasks);
-    };
-    
-    
+      const { user } = useUserInfo()
 
-  return (
-    <div className="p-8">
-      <Board todo={tasks.todo} ongoing={tasks.ongoing} completed={tasks.completed} onDragEnd={onDragEnd} />
-    </div>
-  );
+
+      const { data: TodoTask } = useQuery({
+            queryKey: ['Todo Task'],
+            queryFn: async () => {
+                  const data = await fetch(`http://localhost:3000/tasks?status=todo&email=${user?.email}`)
+                  return await data.json();
+            }
+      })
+
+
+      //   const { data: OngoingTask } = useQuery({
+      //       queryKey: ['Todo Task'],
+      //       queryFn: async () => {
+      //           const data =await fetch(`http://localhost:3000/tasks?status=ongoing&email=${user?.email}`)
+      //           return await data.json();
+      //       }
+      //   })
+      //   const { data: CompletedTask } = useQuery({
+      //       queryKey: ['Todo Task'],
+      //       queryFn: async () => {
+      //           const data =await fetch(`http://localhost:3000/tasks?status=completed&email=${user?.email}`)
+      //           return await data.json();
+      //       }
+      //   })
+
+
+      console.log(TodoTask)
+
+
+      const [tasks, setTasks] = React.useState({
+            //     todo: [{ id: '1', title: 'Task 1' }, { id: '2', title: 'Task 2' }],
+            todo: [
+                  {
+                    _id: '65851b9b4184dd23d9e45525',
+                    formData: { title: 'fd', description: 'dsddf', date: '2023-12-01', name: 'High' },
+                    status: 'todo'
+                  }
+                ]
+              ,
+            ongoing: [
+                  {
+                    _id: '65851b9b4184dfdfdd23d9e45525',
+                    formData: { title: 'fds', description: 'dsdghgf', date: '2023-12-01', name: 'High' },
+                    status: 'ongoing'
+                  }
+                ]
+              ,
+            completed: [
+                  {
+                    _id: '6585sdfs1b9b4184dd23d9e45525',
+                    formData: { title: 'dfd', description: 'dsdsdfsf', date: '2023-12-01', name: 'High' },
+                    status: 'completed'
+                  }
+                ]
+              ,
+      });
+
+
+
+
+      console.log(tasks)
+      const onDragEnd = (result) => {
+            if (!result.destination) return;
+
+            const { source, destination } = result;
+
+            console.log('Source:', source);
+            console.log('Destination:', destination);
+
+            // Create a copy of the tasks object
+            const updatedTasks = { ...tasks };
+
+            // Remove the dragged task from the source list
+            const [removedTask] = updatedTasks[source.droppableId].splice(source.index, 1);
+
+            // Add the dragged task to the destination list
+            updatedTasks[destination.droppableId].splice(destination.index, 0, removedTask);
+
+            console.log('Updated Tasks:', updatedTasks);
+
+            // Update the state with the new tasks
+            setTasks(updatedTasks);
+      };
+
+
+
+      return (
+            <div className="p-8">
+                  <Board todo={tasks.todo} ongoing={tasks.ongoing} completed={tasks.completed} onDragEnd={onDragEnd} />
+            </div>
+      );
 };
 
 export default ToDoList;

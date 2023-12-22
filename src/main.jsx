@@ -13,6 +13,7 @@ import LoggedOut from './PrivateRoutes/LoggedOut'
 import Profile from './Pages/Dashboard/Profile.'
 import CreateTask from './Pages/Dashboard/CreateTask'
 import ToDoList from './Pages/Dashboard/ToDoList'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const Router = createBrowserRouter([
   {
     path: '/',
@@ -53,12 +54,17 @@ const Router = createBrowserRouter([
   }
 ])
 
+const queryClient = new QueryClient()
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
 
-    <AuthProvider>
-      <RouterProvider router={Router}></RouterProvider>
-    </AuthProvider>
-  // {/* </React.StrictMode>, */}
+
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={Router}></RouterProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  // </React.StrictMode>,
 )

@@ -12,7 +12,8 @@ const CreateTask = () => {
       const handleTaskSubmit = (data) => {
             const TaskData = {
                   formData: data,
-                  email: user?.email
+                  email: user?.email,
+                  status: 'todo'
 
             }
 

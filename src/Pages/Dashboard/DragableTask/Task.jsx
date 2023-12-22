@@ -3,9 +3,9 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Task = ({ task, index }) => {
-
+  console.log(task)
   return (
-    <Draggable draggableId={task?.id} index={index}>
+    <Draggable draggableId={task?._id} index={index}>
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
@@ -13,7 +13,7 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           className={`p-2 bg-white border border-gray-300 mb-2 rounded ${snapshot.isDragging ? 'dragging' : ''}`}
         >
-          {task.title}
+          {task?.formData.title}
         </div>
       )}
     </Draggable>
