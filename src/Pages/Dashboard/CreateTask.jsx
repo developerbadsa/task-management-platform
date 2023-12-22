@@ -17,7 +17,7 @@ const CreateTask = () => {
 
             }
 
-            axios.post('http://localhost:3000/create-task', TaskData)
+            axios.post('https://task-management-platform-server-arzz.vercel.app/create-task', TaskData)
                   .then(res => {
                         toast.success("Created Task")
                         reset()

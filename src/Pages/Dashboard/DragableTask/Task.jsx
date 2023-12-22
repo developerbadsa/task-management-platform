@@ -18,7 +18,7 @@ const Task = ({ task, index, refetchAll }) => {
 
   const hanleDelete = (e) => {
     e.preventDefault()
-    axios.delete(`http://localhost:3000/task-delete?id=${id}&email=${user?.email}`)
+    axios.delete(`https://task-management-platform-server-arzz.vercel.app/task-delete?id=${id}&email=${user?.email}`)
       .then(res => {
 
         if (res?.data.deletedCount) {
@@ -55,7 +55,6 @@ const Task = ({ task, index, refetchAll }) => {
         contentLabel=""
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
-        ariaHideApp={false}
         style={{
           overlay: {
             backgroundColor: 'rgba(2, 0, 0, 0.2)',

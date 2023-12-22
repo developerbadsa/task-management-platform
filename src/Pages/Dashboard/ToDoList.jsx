@@ -19,7 +19,7 @@ const ToDoList = () => {
   const { data: TodoTask, isLoading: TodoTaskLoading, refetch: TodoTaskRefetch } = useQuery({
     queryKey: ['TodoTask'],
     queryFn: async () => {
-      const data = await fetch(`http://localhost:3000/tasks?status=todo&email=${user?.email}`);
+      const data = await fetch(`https://task-management-platform-server-arzz.vercel.app/tasks?status=todo&email=${user?.email}`);
       return await data.json();
     }
   });
@@ -27,7 +27,7 @@ const ToDoList = () => {
   const { data: OngoingTask, isLoading: OngoingTaskLoading , refetch: OngoingTaskRefetch} = useQuery({
     queryKey: ['OngoingTask'],
     queryFn: async () => {
-      const data = await fetch(`http://localhost:3000/tasks?status=ongoing&email=${user?.email}`);
+      const data = await fetch(`https://task-management-platform-server-arzz.vercel.app/tasks?status=ongoing&email=${user?.email}`);
       return await data.json();
     }
   });
@@ -35,7 +35,7 @@ const ToDoList = () => {
   const { data: CompletedTask, isLoading: CompletedTaskLoading, refetch: CompletedTaskRefetch } = useQuery({
     queryKey: ['CompletedTask'],
     queryFn: async () => {
-      const data = await fetch(`http://localhost:3000/tasks?status=completed&email=${user?.email}`);
+      const data = await fetch(`https://task-management-platform-server-arzz.vercel.app/tasks?status=completed&email=${user?.email}`);
       return await data?.json();
     }
   });
@@ -61,7 +61,7 @@ const onDragEnd = (result) => {
       if (!result?.destination) return;
 
       const { source, destination, draggableId } = result;
-      axios.put(`http://localhost:3000/task-status?shouldgo=${destination?.droppableId}&email=${user?.email}&id=${draggableId}`)
+      axios.put(`https://task-management-platform-server-arzz.vercel.app/task-status?shouldgo=${destination?.droppableId}&email=${user?.email}&id=${draggableId}`)
       .then(res=>{
             if(res?.data.modifiedCount){
                   toast.success(`Moved to ${destination?.droppableId} Successfully`)
