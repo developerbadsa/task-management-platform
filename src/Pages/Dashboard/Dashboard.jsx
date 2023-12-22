@@ -15,7 +15,7 @@ const Dashboard = () => {
                         {/* Sidebar */}
 
 
-                        <nav className="lg:w-80 lg:flex-shrink-0 border-r lg:left-0 lg:bottom-0 lg:flex lg:flex-col lg:dark:bg-gray-900 lg:text-green-gray-900 lg:z-50 ">
+                        <nav className="lg:w-80 lg:flex-shrink-0 border-r lg:left-0 lg:bottom-0 lg:flex lg:flex-col lg:dark:bg-gray-900 lg:text-green-gray-900 ">
                              {/* profile section */}
                               <div>
                                     <div className="overflow-hidden ">

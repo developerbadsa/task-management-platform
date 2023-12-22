@@ -88,7 +88,7 @@ const onDragEnd = (result) => {
 
 
     return (
-      <div className="p-8">
+      <div className="p-8 lg:py-20">
              <ToastContainer />
         <Board todo={TodoTask} ongoing={OngoingTask} completed={CompletedTask} onDragEnd={onDragEnd} refetchAll={refetchAll}/>
       </div>
