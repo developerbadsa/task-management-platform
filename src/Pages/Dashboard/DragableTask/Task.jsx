@@ -1,9 +1,8 @@
 // Task.js
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { BsThreeDots } from "react-icons/bs";
 import useUserInfo from '../../../Hooks/useUserInfo/useUserInfo';
 import { ToastContainer, toast } from 'react-toastify';
 import ReactModal from 'react-modal';
@@ -11,8 +10,7 @@ import { FcViewDetails } from "react-icons/fc";
 
 const Task = ({ task, index, refetchAll }) => {
   const { user } = useUserInfo()
-  const [showNav, setshowNav] = useState(false)
-  const [showModal, setShowModal] = useState(true)
+  // const [showModal, setShowModal] = useState(true)
 
   const id = task?._id
 
@@ -37,19 +35,15 @@ const Task = ({ task, index, refetchAll }) => {
     console.log('update')
   }
 
-  const handleSeeMore = () => {
-    setshowNav(!showNav)
-    console.log('see more')
-  }
+
 
   const seeDetailsBtnHandle = () => {
     setShowModal(true)
   }
-  console.log(task?.formData)
   return (
     <>
       <ToastContainer />
-      <ReactModal
+      {/* <ReactModal
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel=""
@@ -92,46 +86,6 @@ const Task = ({ task, index, refetchAll }) => {
                 }
               </div>
             </div>
-            {/* <button className="btn bg-amber-800 hover:bg-amber-800 text-white" onClick={() => {
-
-                  const BookingTimeDay = (new Date(uptEndDate) - new Date(uptStartDate)) / 86400000
-                  if (!uptStartDate || !uptEndDate) {
-                        return (
-                              Swal.fire({
-                                    title: "Please Enter Update Booking and End Date",
-                                    icon: "warning",
-                                    confirmButtonText: "OK",
-                                    customClass: {
-                                          confirmButton: 'custom-confirm-button',
-                                    },
-                              })
-                        )
-                  } else if (BookingTimeDay < 1) {
-                        return (Swal.fire({
-                              title: "Please Make sure Your Booking Date",
-                              text: `Your Start date is ${uptStartDate} and your End date is ${uptEndDate}. You Need at least one day`,
-                              icon: "warning",
-                              confirmButtonText: "OK",
-                              customClass: {
-                                    confirmButton: 'custom-confirm-button',
-                              },
-                        }))
-                  }
-                  const updatedDateDatas = { updateStartDate: uptStartDate, updateEndDate: uptEndDate, updateBookingTimeDay: BookingTimeDay, RoomTitle }
-
-                  axios.put(`https://hotel-booking-app-server-wi7a.vercel.app/my_bookings/update_date?email=${user.email}`, updatedDateDatas)
-                        .then(() => {
-                              Swal.fire({
-                                    title: "Success Changed your Date",
-                                    icon: "success"
-                              });
-                              refetch()
-                              setShowModal(false)
-                        })
-                        .catch(err => console.log(err))
-            }}>
-                  Update Date
-            </button> */}
             <br />
             <button className="btn border mt-2" onClick={() => setShowModal(false)}>
               Close
@@ -139,7 +93,7 @@ const Task = ({ task, index, refetchAll }) => {
           </div>
 
         </div>
-      </ReactModal>
+      </ReactModal> */}
       <Draggable draggableId={task?._id} index={index}>
 
         {(provided, snapshot) => (

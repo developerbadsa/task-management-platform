@@ -4,10 +4,6 @@ import { Droppable } from 'react-beautiful-dnd';
 import Task from './Task';
 
 const TaskList = ({ title, tasks, droppableId, refetchAll }) => {
-  console.log(tasks)
-  // if(tasks?.length == 0){
-  //   return 'loading'
-  // }
 
   return (
     <div className=" p-4">
