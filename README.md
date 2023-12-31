@@ -11,5 +11,6 @@ Check out the live demo [here](https://dazzling-biscochitos-d29f3b.netlify.app/)
 - **Task Creation:** Easily create new tasks with relevant details.
 - **Task List:** View and manage your tasks in a clear and organized list.
 - **Task Details:** Access detailed information about each task by clicking on it.
+- **Task Remove:**Enable to remove task.
 - **Task Status:** Mark tasks as completed or in-progress.
 - **Responsive Design:** The platform is designed to work seamlessly across various devices.
