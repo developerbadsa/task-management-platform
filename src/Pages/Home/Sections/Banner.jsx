@@ -18,7 +18,7 @@ const Banner = () => {
                                     Effortless Task Management for Individuals and Teams
                                     </p>
                                     <div className="items-center justify-start block gap-4 md:flex">
-                                          <Link to={'/dashboard'} className="block px-5 py-3 mb-4 text-sm font-semibold text-center text-gray-100 transition duration-200 bg-green-600 rounded md:mb-0 md:inline-block ">
+                                          <Link to={'/dashboard/todo-list'} className="block px-5 py-3 mb-4 text-sm font-semibold text-center text-gray-100 transition duration-200 bg-green-600 rounded md:mb-0 md:inline-block ">
                                            Let’s Explore
                                           </Link>
                                     </div>
