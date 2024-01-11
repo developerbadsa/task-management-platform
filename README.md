@@ -4,7 +4,7 @@ Welcome to the Task Management Platform! This platform allows users to efficient
 
 ## Live Demo
 
-Check out the live demo [here](https://dazzling-biscochitos-d29f3b.netlify.app/).
+Check out the live demo [here](https://65915383ef66c10008b3a1d0--dazzling-biscochitos-d29f3b.netlify.app/).
 
 ## Features
 
